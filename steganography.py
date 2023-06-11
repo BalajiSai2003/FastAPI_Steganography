@@ -82,4 +82,4 @@ def decode_message(image_path):
                     message_bin = message_bin[16:message_length+16]
                     # Convert binary message back to text
                     message = ''.join(chr(int(message_bin[i:i+8], 2)) for i in range(0, len(message_bin), 8))
-                    return message
+                    return {"encoded_message_is":message}
