@@ -32,5 +32,26 @@ def encode_message(message, password, image_path):
     return encoded_image
 
 
-def decode_message(password, image_path):
-    pass
+def decode_message(password, image_path):  
+    # sourcery skip: inline-immediately-returned-variable
+    # Read the encoded image
+    encoded_image = cv2.imread(image_path)
+
+    # Check if the image is valid
+    if encoded_image is None:
+        raise ValueError("Invalid image file")
+
+    # Generate the decryption key based on the password
+    np.random.seed(sum(ord(char) for char in password))
+    key = np.random.randint(0, 256, size=encoded_image.size)
+
+    # Apply the decryption key to the encoded image
+    decoded_image = encoded_image ^ key.reshape(encoded_image.shape)
+
+    binary_message = ''.join(
+        '1' if pixel % 2 == 1 else '0' for pixel in decoded_image.reshape(-1)
+    )
+    # Convert the binary message to text
+    decoded_message = ''.join(chr(int(binary_message[i:i+8], 2)) for i in range(0, len(binary_message), 8))
+
+    return decoded_message
