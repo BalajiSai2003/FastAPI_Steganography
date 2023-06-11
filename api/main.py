@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from ..steganography.steganography import encode_message, decode_message
+from steganography import encode_message, decode_message
 
 app = FastAPI()
 
