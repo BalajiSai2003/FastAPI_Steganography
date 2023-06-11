@@ -9,7 +9,7 @@ Steganography application using FastAPI
 # How to run locally
 
 
-First, clone this repo by using the following command
+First, clone this repo by using the following command in cmd Make sure to have git and python3 installed
 ````
 
 git clone https://github.com/BalajiSai2003/FastAPI_Steganography.git
