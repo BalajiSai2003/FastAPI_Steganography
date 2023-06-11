@@ -62,6 +62,8 @@ def decode_message(image_path):
     img_array = np.array(img)
     # Get image dimensions
     height, width, channels = img_array.shape
+    path = os.path.join('../encodedimage/encoded.png')  
+    os.remove(path)
     # Iterate over each pixel in the image
     message_bin = ''
     for row in range(height):
@@ -81,4 +83,3 @@ def decode_message(image_path):
                     # Convert binary message back to text
                     message = ''.join(chr(int(message_bin[i:i+8], 2)) for i in range(0, len(message_bin), 8))
                     return message
-            
