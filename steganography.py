@@ -1,7 +1,7 @@
 from PIL import Image
 import os
 import numpy as np 
-def encode_message(image_path, message):
+def encode_message(image_path, message, encoded_image_path):
     """
     Encodes a message into an image using the LSB technique.
     """
@@ -48,8 +48,8 @@ def encode_message(image_path, message):
     # Convert numpy array back to image
     img_encoded = Image.fromarray(img_array)
     # Save the encoded image
-    img_encoded.save('../encodedimage/encoded.png')
-    return {"message": "Message encoded successfully", "image_path": "../encodedimage/encoded.png"}
+    img_encoded.save( encoded_image_path)
+    return {"message": "Message encoded successfully", "image_path":  encoded_image_path}
 
 
 def decode_message(image_path):
@@ -62,7 +62,7 @@ def decode_message(image_path):
     img_array = np.array(img)
     # Get image dimensions
     height, width, channels = img_array.shape
-    path = os.path.join('../encodedimage/encoded.png')  
+    path = os.path.join(image_path)  
     os.remove(path)
     # Iterate over each pixel in the image
     message_bin = ''
