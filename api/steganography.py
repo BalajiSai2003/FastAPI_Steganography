@@ -49,7 +49,7 @@ def encode_message(image_path, message):
     img_encoded = Image.fromarray(img_array)
     # Save the encoded image
     img_encoded.save('../encodedimage/encoded.png')
-    return {"message": "Message encoded successfully"}
+    return {"message": "Message encoded successfully", "image_path": "../encodedimage/encoded.png"}
 
 
 def decode_message(image_path):
